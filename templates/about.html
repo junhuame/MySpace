@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+
+{% block title %} 关于 {% endblock %}
+
+{% block content %}
+    <div class="col-lg-8">
+        <div class="card rounded-0 border-0 p-3 f-16">
+            <h2 class="font-weight-bold">关于我</h2>
+            <hr style="margin: .1rem;dashed #333;"/>
+            <ul class="pl-4 ml-2">
+                <br/>
+                <li>一枚Python初学者</li>
+
+                <br/>
+                <li>Github: <a href="https://github.com/junhuame">@junhuame</a></li>
+                <br/>
+                <li>邮箱：<span>email@junh.wang</span></li>
+            </ul>
+
+
+        </div>
+    </div>
+
+    <!--侧边栏-->
+    <div class="col-lg-4">
+
+        {% get_all_categories %}
+
+        {% get_all_tag %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load blog_tags %}
+
+{% block title %} 首页 {% endblock %}
+
+{% block content %}
+    <div class="col-lg-8">
+        {% include 'blog/tags/article-list.html' %}
+    </div>
+
+    <!--侧边栏-->
+    <div class="col-lg-4">
+
+        {% get_all_categories %}
+
+        {% get_all_tag %}
+
+    </div>
+
+{% endblock %}

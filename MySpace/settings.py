@@ -33,8 +33,6 @@ try:
 except ImportError:
     print('请确认是否存在本地信息local_settings')
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -45,8 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'ckeditor',  # django-ckeditor 富文本编辑器
+    'ckeditor_uploader',
+    'taggit',   # 标签django-taggit
     'blog',  # 博客应用
+    'read_statistices',    # 阅读统计
+
 ]
 
 MIDDLEWARE = [
@@ -64,7 +66,7 @@ ROOT_URLCONF = 'MySpace.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -114,10 +116,23 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# 关闭 防止时区报错
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+# 配置静态资源目录，使用项目下的static
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+
+# 自定义媒体根目录
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL ='/media/'
+
+# 配置ckeditor
+CKEDITOR_UPLOAD_PATH = 'ArticlePictures/'
+
+# 自定义参数
+EACH_PAGE_ARTICLE_NUMBER = 5  # 分页数

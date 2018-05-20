@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load blog_tags %}
+
+{% block title %} 博客归档 {% endblock %}
+
+{% block content %}
+    <div class="col-lg-8">
+        <div class="card border-0 rounded-0 mb-3">
+            <div class="card-body f-16 archive">
+                {# 按照年份对其分组 #}
+                {% regroup articles by created.year as year_list %}
+                <ul class="pl-4">
+                    {#循环显示这些年份，而在某个年份的循环中，又对该年份下的文章按照月份对其分组#}
+                    {% for article in year_list %}
+                        <li>{{ article.grouper }} 年
+                            {% regroup article.list by created.month as month_list %}
+                            <ul class="pl-4">
+                                {% for each in month_list %}
+                                    <li>{{ each.grouper }} 月 (共 {{ each.list|length }} 篇)
+                                        <ul class="pl-4">
+                                            {#循环显示该年中各个月份下的文章#}
+                                            {% for item in each.list %}
+                                                <li class="text-info">{{ item.created|date:'m-d' }}&nbsp;&nbsp;<a
+                                                        href="{% url 'blog:blog_detail' item.slug %}">{{ item.title }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!--侧边栏-->
+    <div class="col-lg-4">
+
+        {% get_all_categories %}
+
+        {% get_all_tag %}
+        <!--友链-->
+        <div class="d-none d-lg-block">
+            <div class="card border-0 rounded-0 px-3 mb-2 mb-md-3" id="friends-card">
+                <div class="card-header bg-white px-0">
+                    <strong><i class="fa fa-link mr-2 f-17"></i>友情链接</strong>
+                </div>
+                <div class="card-body px-0 py-3">
+                    <div class="tool-list">
+                        <div class="w-50 float-left text-center mb-2">
+                            <div class="mx-2">
+                                <a href="https://www.v2ex.com/?r=Hopetree" title="V2EX 社区" target="_blank">V2EX
+                                    社区</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

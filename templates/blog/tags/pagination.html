@@ -1,0 +1,47 @@
+<div aria-label="Page navigation example">
+    <ul class="pagination">
+        {#上一页#}
+
+        {% if articles.has_previous %}
+            <li class="page-item font-weight-bold">
+                <a class="page-link" href="?page={{ articles.previous_page_number }}" tabindx="-1">&laquo;</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&laquo;</span>
+            </li>
+        {% endif %}
+
+        {# 页码列 #}
+        {% for i in page_range %}
+            {% if i == articles.number %}
+                <li class="page-item active font-weight-bold"><span class="page-link" href="#">{{ i }}</span></li>
+            {% else %}
+                {% if i == '...' %}
+                    <li class="page-item disabled">
+                        <span class="page-link">{{ i }}</span>
+                    </li>
+                {% else %}
+                    <li class="page-item font-weight-bold"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+
+            {% endif %}
+        {% endfor %}
+
+        {# 下一页#}
+
+        {% if articles.has_next %}
+            <li class="page-item font-weight-bold">
+                <a class="page-link" href="?page={{ articles.next_page_number }}">&raquo;</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&raquo;</span>
+            </li>
+        {% endif %}
+    </ul>
+    <small>
+        共有{{ articles.paginator.count }}篇文章，
+        当前第{{ articles.number }}页，共{{ articles.paginator.num_pages }}页
+    </small>
+</div>

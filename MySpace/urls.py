@@ -13,9 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings   #导入setting
+from django.conf.urls import static  # 导入把静态文件当作静态资源的函数
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^ckeditor', include('ckeditor_uploader.urls')),
+    url(r'^', include('blog.urls', namespace='blog', app_name='blog'))
 ]
+
+urlpatterns += static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
