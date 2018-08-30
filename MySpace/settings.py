@@ -43,8 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ckeditor',  # django-ckeditor 富文本编辑器
-    'ckeditor_uploader',
     'taggit',   # 标签django-taggit
     'blog',  # 博客应用
     'read_statistices',    # 阅读统计
@@ -130,9 +128,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 # 自定义媒体根目录
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL ='/media/'
-
-# 配置ckeditor
-CKEDITOR_UPLOAD_PATH = 'ArticlePictures/'
 
 # 自定义参数
 EACH_PAGE_ARTICLE_NUMBER = 5  # 分页数

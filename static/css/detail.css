@@ -1,3 +1,6 @@
+.f-17 {
+    font-size: 15px;
+}
 .nowpage .breadcrumb {
     background-color:transparent;
 }
@@ -10,7 +13,7 @@
 }
 .codehilite pre {
     border: none;
-    background-color: #e4eaef;
+    background-color: #f2f2f2;
     border-radius: 3px;
     font-size: 80%;
     padding: .8rem;
@@ -49,7 +52,7 @@
     color:#fff;
 }
 .article-body code {
-    background-color:#e4eaef;
+    background-color:#f9f2f4;
 }
 .article-body a {
     color: #ea6f5a;
@@ -79,16 +82,30 @@
 blockquote {
     margin: 0 0 .5em;
 }
+code {
+    padding: .1rem .3rem;
+    font-size: 90%;
+    color: #c7254e;
+    border-radius: 3px;
+}
+pre {
+    line-height: 1.5;
+    overflow-:auto;
+}
 /* Small devices (landscape phones, 576px and up) */
 /* X-iPhone6 AND plus */
 @media (min-width: 576px) {
-
+.f-17 {
+    font-size: 15px;
+}
 }
 
 /* Medium devices (tablets, 768px and up) */
 /* Y-iPad mini */
 @media (min-width: 768px) {
-
+.f-17 {
+    font-size: 16px;
+}
 }
 
 /* Large devices (desktops, 992px and up) */

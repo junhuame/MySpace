@@ -20,7 +20,6 @@ from django.conf.urls import static  # 导入把静态文件当作静态资源�
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^ckeditor', include('ckeditor_uploader.urls')),
     url(r'^', include('blog.urls', namespace='blog', app_name='blog'))
 ]
 

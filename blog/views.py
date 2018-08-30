@@ -1,3 +1,4 @@
+import markdown
 from django.shortcuts import render, get_object_or_404, render_to_response
 from django.db.models import Count
 from django.conf import settings
@@ -55,7 +56,14 @@ def base(request):
 
 
 def blog_detail(request, slug):
+    """文章详情"""
     article = get_object_or_404(Article, slug=slug)
+    md = markdown.Markdown(extensions=[
+        'markdown.extensions.extra',
+        'markdown.extensions.codehilite',
+        'markdown.extensions.toc',
+    ])
+    article.body = md.convert(article.body)
     read_cookie_key = read_statics_once_read(request, article)
     # 利用标签，获取相关日志
     article_tags_ids = article.tags.values_list('id', flat=True)
@@ -66,6 +74,7 @@ def blog_detail(request, slug):
     next_article = Article.Public_objects.filter(created__lt=article.created).first()
 
     response = render_to_response( 'blog/detail.html', {'article': article,
+                                                        'toc' : md.toc,
                                                         'similar_articles': similar_articles,
                                                         'previous_article': previous_article,
                                                         'next_article': next_article})

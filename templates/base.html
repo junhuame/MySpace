@@ -9,7 +9,8 @@
     <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <title>{% block title %}首页{% endblock %}-Junh.Wang</title>
+    {% block styles %}  {% endblock%}
+    <title>{% block title %}首页{% endblock %}-Junh.Wang</title> 
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-white fixed-top blog-navbar py-md-0 headroom headroom--pinned headroom--top">
